@@ -1,0 +1,14 @@
+#tabla-contenedor {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #000;
+}
+
+/*# sourceMappingURL=index.a08dd8a9.css.map */
