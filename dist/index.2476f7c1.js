@@ -591,32 +591,75 @@ function chiCuadrada(intervalos, randoms, k, e) {
     let k = parseInt(Math.sqrt(n));
     let e = n / k;
     let valoresAleatorios = generaTablaAleatoria(n);
-    for(let i = 0; i < valoresAleatorios.length; i++)console.log(i + 1 + "		" + valoresAleatorios[i]);
+    // Obtén una referencia al elemento contenedor de la tabla
+    let contenedorTabla2 = document.getElementById("contenedor-tabla2");
+    // Crea una variable para almacenar el contenido HTML de la tabla
+    let tablaHTML2 = "<table>";
+    tablaHTML2 += "<tr><th>i</th><th>Valor aleatorio</th>";
+    for(let i = 0; i < valoresAleatorios.length; i++){
+        tablaHTML2 += "<tr>";
+        tablaHTML2 += "<th>" + (i + 1) + "</th>";
+        tablaHTML2 += "<th>" + valoresAleatorios[i] + "</th>";
+        tablaHTML2 += "</tr>";
+    }
+    tablaHTML2 += "</table>";
+    contenedorTabla2.innerHTML = tablaHTML2;
     let r = Math.max(...valoresAleatorios) - Math.min(...valoresAleatorios);
     let w = r / k;
     let intervalos = [];
     intervalos = generaIntervalos(valoresAleatorios, w, k);
     window.valoresO = [];
     valoresO = chiCuadrada(intervalos, valoresAleatorios, k, e);
-    console.log("i		O			E			(O-E)			((O-E)^2)/E");
-    for(let i = 0; i < valoresO.length - 1; i++)console.log(i + 1 + "		" + valoresO[i] + "			" + e.toFixed(precision) + "		" + (valoresO[i] - e).toFixed(precision) + "			" + (Math.pow(valoresO[i] - e, 2) / e).toFixed(precision));
-    console.log("La suma es: " + valoresO[valoresO.length - 1]);
+    // Obtén una referencia al elemento contenedor de la tabla
+    let contenedorTabla = document.getElementById("contenedor-tabla");
+    // Crea una variable para almacenar el contenido HTML de la tabla
+    let tablaHTML = "<table>";
+    // Encabezados de la tabla
+    tablaHTML += "<tr>";
+    tablaHTML += "<th>i</th>";
+    tablaHTML += "<th>O</th>";
+    tablaHTML += "<th>E</th>";
+    tablaHTML += "<th>(O-E)</th>";
+    tablaHTML += "<th>((O-E)^2)/E</th>";
+    tablaHTML += "</tr>";
+    // Contenido de la tabla
+    for(var i = 0; i < valoresO.length - 1; i++){
+        tablaHTML += "<tr>";
+        tablaHTML += "<td>" + (i + 1) + "</td>";
+        tablaHTML += "<td>" + valoresO[i] + "</td>";
+        tablaHTML += "<td>" + e.toFixed(precision) + "</td>";
+        tablaHTML += "<td>" + (valoresO[i] - e).toFixed(precision) + "</td>";
+        tablaHTML += "<td>" + (Math.pow(valoresO[i] - e, 2) / e).toFixed(precision) + "</td>";
+        tablaHTML += "</tr>";
+    }
+    // Cierra la etiqueta de la tabla
+    tablaHTML += "</table>";
+    // Asigna el contenido HTML de la tabla al contenedor
+    contenedorTabla.innerHTML = tablaHTML;
+    let contenedor_h2 = document.getElementById("contenedor-h2");
+    let h2 = "<h2> Sumatoria = " + valoresO[valoresO.length - 1] + "</h2>";
+    contenedor_h2.innerHTML = h2;
     let data = [];
     for(let i = 0; i < valoresO.length - 1; i++){
         let obj = {
-            year: i + 1,
-            count: valoresO[i]
+            iteracion: i + 1,
+            valorO: valoresO[i],
+            valorE: e
         };
         data.push(obj);
     }
-    new (0, _autoDefault.default)(document.getElementById("acquisitions"), {
+    new (0, _autoDefault.default)(document.getElementById("grafica"), {
         type: "bar",
         data: {
-            labels: data.map((row)=>row.year),
+            labels: data.map((row)=>row.iteracion),
             datasets: [
                 {
-                    label: "Chi cuadrada",
-                    data: data.map((row)=>row.count)
+                    label: "Num de o's obtenidad",
+                    data: data.map((row)=>row.valorO)
+                },
+                {
+                    label: "Valor esperado",
+                    data: data.map((row)=>row.valorE)
                 }
             ]
         }
