@@ -21,7 +21,7 @@
 143C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\lexer\Lexer.js133289203224041465 0
 124C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\csso\node_modules\css-tree\cjs\syntax\atrule133289203234521707 1
 138C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\csso\node_modules\css-tree\lib\syntax\node\TypeSelector.js133289203240933128 0
-71C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist133290039372750278 1
+71C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist133290042781845828 1
 105C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\type-fest\ts41\index.d.ts133289203209231549 0
 115C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\es\function\virtual\bind.js133289203239142747 0
 109C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\actual\string\bold.js133289203239942919 0
@@ -108,7 +108,7 @@
 106C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\node-releases\package.json133289203197097705 0
 94C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\es\set133289203270562924 1
 131C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\@parcel\source-map\parcel_sourcemap_node\src\lib.rs133289203229111194 0
-96C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\source\pruebasEstadisticas.js133290039366073733 0
+96C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\source\pruebasEstadisticas.js133290042595215219 0
 133C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\@parcel\optimizer-svgo\node_modules\csso\package.json133289203218051565 0
 101C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\ramda\src\toString.js133289203251388645 0
 106C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\internals\a-set.js133289203222662587 0
@@ -11060,8 +11060,8 @@
 111C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\.bin\update-browserslist-db.cmd133289203319130037 0
 89C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\.bin\uuid133289203319140070 0
 93C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\.bin\uuid.cmd133289203319130037 0
-89C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.2476f7c1.js133290039372620260 0
-93C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.2476f7c1.js.map133290039372730337 0
+89C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.2476f7c1.js133290042781715767 0
+93C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.2476f7c1.js.map133290042781825832 0
 82C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.html133290039371910108 0
 80C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.js133289035795620176 0
 84C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.js.map133289036502412207 0

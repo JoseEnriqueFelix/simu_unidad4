@@ -588,6 +588,10 @@ function chiCuadrada(intervalos, randoms, k, e) {
 (async function() {
     let precision = 2;
     let n = prompt("Ingrese el valor de n");
+    if (!n) {
+        n = prompt("Ingrese el valor de n");
+        localStorage.setItem("n", n);
+    }
     let k = parseInt(Math.sqrt(n));
     let e = n / k;
     let valoresAleatorios = generaTablaAleatoria(n);
