@@ -12,4 +12,8 @@ table, th, td {
   border: 1px solid #000;
 }
 
+td, th {
+  text-align: center;
+}
+
 /*# sourceMappingURL=index.a08dd8a9.css.map */
