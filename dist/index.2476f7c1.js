@@ -681,7 +681,7 @@ function pruebaDeLasSeries(v, pares) {
                 labels: data.map((row)=>row.iteracion),
                 datasets: [
                     {
-                        label: "Num de o's obtenidad",
+                        label: "Num de o's obtenidas",
                         data: data.map((row)=>row.valorO)
                     },
                     {
@@ -693,7 +693,7 @@ function pruebaDeLasSeries(v, pares) {
         });
     } else if (menu == 2) ;
     else if (menu == 3) {
-        //let celdas=v*v
+        let tamaño = v;
         let valoresAleatorios = generaTablaAleatoria(n);
         let contenedorTablaAleatoria = document.getElementById("contenedor-tablaAleatoria");
         contenedorTablaAleatoria.innerHTML = imprimeTablaAleatoria(valoresAleatorios);
@@ -717,6 +717,36 @@ function pruebaDeLasSeries(v, pares) {
         for(let i = 0; i < valoresAleatorios.length; i++)tablaHTML += "<tr><td>" + (i + 1) + "</td><td>" + pares[i].par1 + "</td><td>" + pares[i].par2 + "</td></tr>";
         tablaHTML += "</table>";
         contenedorTablaPruebaDeLasSeries.innerHTML = tablaHTML;
+        new (0, _autoDefault.default)(document.getElementById("grafica"), {
+            type: "bubble",
+            data: {
+                labels: pares.map((row)=>row.par2),
+                datasets: [
+                    {
+                        label: "Num de o's obtenidas",
+                        data: pares.map((row)=>({
+                                x: row.par1,
+                                y: row.par2,
+                                r: row.tamaño
+                            }))
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    x: {
+                        ticks: {
+                            stepSize: 1 / v
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            stepSize: 1 / v
+                        }
+                    }
+                }
+            }
+        });
         let valoresO1 = pruebaDeLasSeries(v, pares);
         console.log(valoresO1);
     }
