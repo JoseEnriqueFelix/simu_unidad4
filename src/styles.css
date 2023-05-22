@@ -1,0 +1,17 @@
+#tabla-contenedor {
+    width: 100%;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+  }
+
+  td, th {
+    text-align: center;
+  }
