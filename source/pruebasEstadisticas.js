@@ -81,7 +81,6 @@ function pruebaDeLasSeries(v, pares){
 
 
 (async function() {
-  let precision=4
   let menu = prompt("Ingrese: 1) Chi cuadrada; 3) Prueba de las series");
 
   if (!menu) {
@@ -122,9 +121,9 @@ function pruebaDeLasSeries(v, pares){
       tablaHTML += "<tr>";
       tablaHTML += "<td>" + (i + 1) + "</td>";
       tablaHTML += "<td>" + valoresO[i] + "</td>";
-      tablaHTML += "<td>" + e.toFixed(precision) + "</td>";
-      tablaHTML += "<td>" + (valoresO[i] - e).toFixed(precision) + "</td>";
-      tablaHTML += "<td>" + (Math.pow((valoresO[i] - e), 2) / e).toFixed(precision) + "</td>";
+      tablaHTML += "<td>" + e + "</td>";
+      tablaHTML += "<td>" + (valoresO[i] - e) + "</td>";
+      tablaHTML += "<td>" + (Math.pow((valoresO[i] - e), 2) / e) + "</td>";
       tablaHTML += "</tr>";
     }
 
@@ -230,8 +229,58 @@ function pruebaDeLasSeries(v, pares){
     );
 
     let valoresO=pruebaDeLasSeries(v, pares)
-    console.log(valoresO)
+    let contenedorTablaPruebaDeLasSeries2=document.getElementById("contenedor-tablaPruebaDeLasSeries2");
+    let tablaHTML2="<table><tr>Valores absorvados de O</tr>"
+    for (let i=0; i<v; i++){
+      tablaHTML2+="<tr>"
+      for (let j=0; j<v; j++){
+        tablaHTML2 += "<td>" + valoresO[i][j] + "</td>"
+      }
+      tablaHTML2+="</tr>"
+    }
+    tablaHTML2+="</table>"
+    contenedorTablaPruebaDeLasSeries2.innerHTML=tablaHTML2
+    
+    let e=n/(v*v)
+    let contenedorTablaPruebaDeLasSeries3=document.getElementById("contenedor-tablaPruebaDeLasSeries3");
+    let tablaHTML3="<table><tr>Valores esperados E</tr>"
+    for (let i=0; i<v; i++){
+      tablaHTML3+="<tr>"
+      for (let j=0; j<v; j++){
+        tablaHTML3 += "<td>" + e + "</td>"
+      }
+      tablaHTML3+="</tr>"
+    }
+    tablaHTML3+="</table>"
+    contenedorTablaPruebaDeLasSeries3.innerHTML=tablaHTML3
 
+    let contenedorTablaPruebaDeLasSeries4=document.getElementById("contenedor-tablaPruebaDeLasSeries4");
+    let tablaHTML4="<table><tr>((O-E)^2)/E</tr>"
+    tablaHTML4+="<tr><th></th>"
+    let incremento=1/v
+    let fila=incremento
+    for(let i=0; i<v; i++){
+      tablaHTML4+="<th>" + fila.toFixed(1) + "</th>"
+      fila+=incremento
+    }
+    fila=incremento
+    let suma=0
+    tablaHTML4+="</tr>"
+    for (let i=0; i<v; i++){
+      tablaHTML4+="<tr><th>" + fila.toFixed(1) + "</th>"
+      for (let j=0; j<v; j++){
+        tablaHTML4 += "<td>" + (Math.pow((valoresO[i][j] - e), 2) / e) + "</td>"
+        suma+=(Math.pow((valoresO[i][j] - e), 2) / e)
+      }
+      fila+=incremento
+      tablaHTML4+="</tr>"
+    }
+    tablaHTML4+="</table>"
+    contenedorTablaPruebaDeLasSeries4.innerHTML=tablaHTML4
+    let contenedorSumatoria=document.getElementById("contenedor-sumatoriaPruebaDeLasSeries");
+    
+    let sumatoria="<h2> Sumatoria = " + suma + "</h2>"
+    contenedorSumatoria.innerHTML=sumatoria
 
 
 

@@ -21,7 +21,7 @@
 143C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\lexer\Lexer.js133289203224041465 0
 124C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\csso\node_modules\css-tree\cjs\syntax\atrule133289203234521707 1
 138C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\csso\node_modules\css-tree\lib\syntax\node\TypeSelector.js133289203240933128 0
-71C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist133291697592868190 1
+71C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist133291872668213050 1
 105C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\type-fest\ts41\index.d.ts133289203209231549 0
 115C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\es\function\virtual\bind.js133289203239142747 0
 109C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\actual\string\bold.js133289203239942919 0
@@ -82,7 +82,7 @@
 108C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\ramda\src\internal\_quote.js133289203232822199 0
 105C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\weak-lru-cache\index.d.ts133289203204760550 0
 94C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\@cubejs-client133289203183762847 1
-84C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\source\index.html133290803407439860 0
+84C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\source\index.html133291872509985942 0
 100C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\stage\pre.js133289203281625388 0
 87C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\js-yaml133289203213831219 1
 104C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\es\array\from.js133289203266051913 0
@@ -108,7 +108,7 @@
 106C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\node-releases\package.json133289203197097705 0
 94C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\es\set133289203270562924 1
 131C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\@parcel\source-map\parcel_sourcemap_node\src\lib.rs133289203229111194 0
-96C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\source\pruebasEstadisticas.js133291697590289730 0
+96C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\source\pruebasEstadisticas.js133291872509500223 0
 133C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\@parcel\optimizer-svgo\node_modules\csso\package.json133289203218051565 0
 101C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\ramda\src\toString.js133289203251388645 0
 106C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\internals\a-set.js133289203222662587 0
@@ -8225,7 +8225,7 @@
 118C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\features\instance\ends-with.js133289203248137929 0
 113C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\features\instance\fill.js133289203260950783 0
 115C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\features\instance\filter.js133289203261620921 0
-94C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.a08dd8a9.css.map133291686173052553 0
+94C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.a08dd8a9.css.map133291872519681692 0
 118C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\features\instance\find-last.js133289203262901204 0
 134C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\@parcel\optimizer-image\parcel-image.darwin-arm64.node133289203223582791 0
 117C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\@swc\helpers\src\_async_generator.mjs133289203228411046 0
@@ -8652,7 +8652,7 @@
 118C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\actual\typed-array\for-each.js133289203265221723 0
 114C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\actual\typed-array\from.js133289203266031936 0
 118C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\actual\typed-array\includes.js133289203269132607 0
-90C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.a08dd8a9.css133291686172902502 0
+90C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.a08dd8a9.css133291872519641700 0
 118C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\actual\typed-array\index-of.js133289203269542695 0
 111C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\caniuse-lite\data\regions\FO.js133289203241663294 0
 121C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\core-js\actual\typed-array\int16-array.js133289203272603385 0
@@ -11060,9 +11060,9 @@
 111C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\.bin\update-browserslist-db.cmd133289203319130037 0
 89C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\.bin\uuid133289203319140070 0
 93C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\node_modules\.bin\uuid.cmd133289203319130037 0
-89C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.2476f7c1.js133291697592748165 0
-93C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.2476f7c1.js.map133291697592848215 0
-82C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.html133291686173482633 0
+89C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.2476f7c1.js133291872668143023 0
+93C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.2476f7c1.js.map133291872668203037 0
+82C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.html133291872665899544 0
 80C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.js133289035795620176 0
 84C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\index.js.map133289036502412207 0
 95C:\Users\JoseE\onedrive\documentos\4to semestre\simulacion\unidad4\dist\styles.8986bff4.css.map133289035803185380 0
