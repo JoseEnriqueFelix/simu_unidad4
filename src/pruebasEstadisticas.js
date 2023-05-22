@@ -1,5 +1,18 @@
 import Chart from 'chart.js/auto'
 
+let chiCuadrada_5=new Map()
+chiCuadrada_5.set("5", 11.0705)
+chiCuadrada_5.set("6", 12.5916)
+chiCuadrada_5.set("7", 14.0671)
+chiCuadrada_5.set("8", 15.5073)
+chiCuadrada_5.set("9", 16.9190)
+let chiCuadrada_10=new Map()
+chiCuadrada_10.set("5", 9.2363)
+chiCuadrada_10.set("6", 10.6446)
+chiCuadrada_10.set("7", 12.0170)
+chiCuadrada_10.set("8", 13.3616)
+chiCuadrada_10.set("9", 14.6837)
+
 const kolmogorov_5 = [0.22743, 0.22425, 0.22119, 0.21826, 0.21544, 0.21273, 0.21012, 0.20760, 0.20517,
   0.20283, 0.20056, 0.19837, 0.19625, 0.19420, 0.19221, 0.19028, 0.18841];
 const kolmogorov_10 = [0.21472, 0.20185, 0.19910, 0.19646, 0.19392, 0.19148, 0.18913, 0.18687, 0.18468,
@@ -56,6 +69,18 @@ function chiCuadrada(intervalos, randoms, k, e){
     }
     o[a+1]=suma
     return o
+}
+
+function evaluacionChiCuadrada(k, v){
+  k--
+  let valorRetorno
+  if(v==5){
+    valorRetorno=chiCuadrada_5.get("" + k)
+  }
+  else if(v==10){
+    valorRetorno=chiCuadrada_10.get("" + k)
+  }
+  return valorRetorno
 }
 
 function gradosKolmogorov(n, v) {
@@ -115,20 +140,29 @@ function pruebaDeLasSeries(v, pares){
 }
 
 (async function() {
-  let menu = prompt("Ingrese: 1) Chi cuadrada; 2)Prueba de Kolmogorov; 3) Prueba de las series");
+  let menu = prompt("Ingrese:\n 1) Chi cuadrada  2)Prueba de Kolmogorov  3) Prueba de las series");
 
   if (!menu) {
-    menu = prompt("Ingrese: 1) Chi cuadrada; 2)Prueba de Kolmogorov; 3) Prueba de las series");
+    menu = prompt("Ingrese:\n 1) Chi cuadrada; 2)Prueba de Kolmogorov; 3) Prueba de las series");
     localStorage.setItem('menu', menu);
   }
-
+  let n
+  let v
   if(menu==6){
     window.close()
   }
-  
+  else{
+    n=prompt("Ingrese el valor de n")
+    v=prompt("ingrese el % de fallo:\n 1) 5%  2)10%")
+    if(v==1){
+      v=5
+    }
+    else if(v==2){
+      v=10
+    }
+  }
+
   if(menu==1){
-    let n=prompt("Ingrese el valor de n")
-    let v=prompt("ingrese los grados de libertad")
     let valoresAleatorios=generaTablaAleatoria(n)
     let k=parseInt(Math.sqrt(n))
     let e=n/k
@@ -168,13 +202,18 @@ function pruebaDeLasSeries(v, pares){
 
     // Cierra la etiqueta de la tabla
     tablaHTML += "</table>";
-
     // Asigna el contenido HTML de la tabla al contenedor
     contenedorTablaChiCuadrada.innerHTML = tablaHTML;
+    let mensaje
+    let comparacion=evaluacionChiCuadrada(k, v)
+    if(valoresO[valoresO.length-1]<=comparacion){
+      mensaje="<h2> Sumatoria = " + valoresO[valoresO.length-1] + " <= " + comparacion + " ... por lo tanto, los números SI están uniformemente distribuidos</h2>"
+    }
+    else {
+      mensaje="<h2> Sumatoria = " + valoresO[valoresO.length-1] + " > " + comparacion + " ... por lo tanto, los números NO están uniformemente distribuidos</h2>"
+    }
     let contenedorSumatoria=document.getElementById("contenedor-sumatoria");
-    
-    let sumatoria="<h2> Sumatoria = " + valoresO[valoresO.length-1] + "</h2>"
-    contenedorSumatoria.innerHTML=sumatoria
+    contenedorSumatoria.innerHTML=mensaje
 
     let data = []
 
@@ -213,8 +252,6 @@ function pruebaDeLasSeries(v, pares){
     });
   }
   else if(menu==2){
-    let n=prompt("Ingrese el valor de n")
-    let v=prompt("ingrese los grados de libertad")
     let valoresAleatorios=generaTablaAleatoria(n)
     let contenedorTablaAleatoria = document.getElementById("contenedor-tablaAleatoria");
     contenedorTablaAleatoria.innerHTML=imprimeTablaAleatoria(valoresAleatorios)
@@ -285,8 +322,6 @@ function pruebaDeLasSeries(v, pares){
     });
   }
   else if(menu==3){
-    let n=prompt("Ingrese el valor de n")
-    let v=prompt("ingrese los grados de libertad")
     let valoresAleatorios=generaTablaAleatoria(n)
     let contenedorTablaAleatoria = document.getElementById("contenedor-tablaAleatoria");
     contenedorTablaAleatoria.innerHTML=imprimeTablaAleatoria(valoresAleatorios)
@@ -395,10 +430,25 @@ function pruebaDeLasSeries(v, pares){
     }
     tablaHTML4+="</table>"
     contenedorTablaPruebaDeLasSeries4.innerHTML=tablaHTML4
+    let mensaje
     let contenedorSumatoria=document.getElementById("contenedor-sumatoriaPruebaDeLasSeries");
-    
-    let sumatoria="<h2> Sumatoria = " + suma + "</h2>"
-    contenedorSumatoria.innerHTML=sumatoria
+    if(v==5){
+      if(suma<=36.4150){
+        mensaje="<h2> Sumatoria = " + suma + " <= " + 36.4150 + " ... por lo tanto, los números SI son independientes</h2>"
+      }
+      else{
+        mensaje="<h2> Sumatoria = " + suma + " <= " + 36.4150 + " ... por lo tanto, los números NO son independientes</h2>"
+      }
+    }
+    else if(v==10){
+      if(suma<= 118.4980){
+        mensaje="<h2> Sumatoria = " + suma + " <= " +  118.4980 + " ... por lo tanto, los números SI son independientes</h2>"
+      }
+      else{
+        mensaje="<h2> Sumatoria = " + suma + " <= " +  118.4980 + " ... por lo tanto, los números NO son independientes</h2>"
+      }
+    }
+    contenedorSumatoria.innerHTML=mensaje
 
     let boton = document.getElementById('boton');
     let botonHTML="<button>Repetir</button>"
