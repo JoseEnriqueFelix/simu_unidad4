@@ -114,7 +114,6 @@ function pruebaDeLasSeries(v, pares){
   return valoresO
 }
 
-
 (async function() {
   let menu = prompt("Ingrese: 1) Chi cuadrada; 2)Prueba de Kolmogorov; 3) Prueba de las series");
 
@@ -122,10 +121,15 @@ function pruebaDeLasSeries(v, pares){
     menu = prompt("Ingrese: 1) Chi cuadrada; 2)Prueba de Kolmogorov; 3) Prueba de las series");
     localStorage.setItem('menu', menu);
   }
-  let n=prompt("Ingrese el valor de n")
-  let v=prompt("ingrese los grados de libertad")
-  let valoresAleatorios=generaTablaAleatoria(n)
+
+  if(menu==6){
+    window.close()
+  }
+  
   if(menu==1){
+    let n=prompt("Ingrese el valor de n")
+    let v=prompt("ingrese los grados de libertad")
+    let valoresAleatorios=generaTablaAleatoria(n)
     let k=parseInt(Math.sqrt(n))
     let e=n/k
     let contenedorTablaAleatoria = document.getElementById("contenedor-tablaAleatoria");
@@ -198,8 +202,20 @@ function pruebaDeLasSeries(v, pares){
         }
       }
     );
+    let boton = document.getElementById('boton');
+    let botonHTML="<button>Repetir</button>"
+    boton.innerHTML=botonHTML
+
+    // Agrega un evento de clic al botón
+    boton.addEventListener('click', function() {
+      // Código que se ejecutará cuando se haga clic en el botón
+      location.reload();
+    });
   }
   else if(menu==2){
+    let n=prompt("Ingrese el valor de n")
+    let v=prompt("ingrese los grados de libertad")
+    let valoresAleatorios=generaTablaAleatoria(n)
     let contenedorTablaAleatoria = document.getElementById("contenedor-tablaAleatoria");
     contenedorTablaAleatoria.innerHTML=imprimeTablaAleatoria(valoresAleatorios)
     let valoresOrdenados=valoresAleatorios.sort(function(a, b) {
@@ -258,9 +274,19 @@ function pruebaDeLasSeries(v, pares){
         }
       }
     );
+    let boton = document.getElementById('boton');
+    let botonHTML="<button>Repetir</button>"
+    boton.innerHTML=botonHTML
+
+    // Agrega un evento de clic al botón
+    boton.addEventListener('click', function() {
+      // Código que se ejecutará cuando se haga clic en el botón
+      location.reload();
+    });
   }
   else if(menu==3){
-    let tamaño=v
+    let n=prompt("Ingrese el valor de n")
+    let v=prompt("ingrese los grados de libertad")
     let valoresAleatorios=generaTablaAleatoria(n)
     let contenedorTablaAleatoria = document.getElementById("contenedor-tablaAleatoria");
     contenedorTablaAleatoria.innerHTML=imprimeTablaAleatoria(valoresAleatorios)
@@ -373,5 +399,21 @@ function pruebaDeLasSeries(v, pares){
     
     let sumatoria="<h2> Sumatoria = " + suma + "</h2>"
     contenedorSumatoria.innerHTML=sumatoria
+
+    let boton = document.getElementById('boton');
+    let botonHTML="<button>Repetir</button>"
+    boton.innerHTML=botonHTML
+
+    // Agrega un evento de clic al botón
+    boton.addEventListener('click', function() {
+      // Código que se ejecutará cuando se haga clic en el botón
+      location.reload();
+    });
+  }
+  else if(menu==4){
+
+  }
+  else if(menu==5){
+
   }
 })();
