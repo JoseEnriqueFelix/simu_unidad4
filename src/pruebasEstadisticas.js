@@ -1,5 +1,10 @@
 import Chart from 'chart.js/auto'
 
+const kolmogorov_5 = [0.22743, 0.22425, 0.22119, 0.21826, 0.21544, 0.21273, 0.21012, 0.20760, 0.20517,
+  0.20283, 0.20056, 0.19837, 0.19625, 0.19420, 0.19221, 0.19028, 0.18841];
+const kolmogorov_10 = [0.21472, 0.20185, 0.19910, 0.19646, 0.19392, 0.19148, 0.18913, 0.18687, 0.18468,
+   0.18257, 0.18051, 0.17856, 0.17665, 0.17481, 0.17301, 0.17128, 0.16959];
+
 function generaTablaAleatoria(n){
     let randoms=[]
     for (let i=0; i<n; i++){
@@ -53,6 +58,36 @@ function chiCuadrada(intervalos, randoms, k, e){
     return o
 }
 
+function gradosKolmogorov(n, v) {
+  let kolmogorov = 0;
+
+  v=parseInt(v)
+  
+  switch (v) {
+    case 5:
+      if (n >= 34 && n <= 50) {
+        kolmogorov = kolmogorov_5[n - 34];
+      } else {
+        kolmogorov = 1.36 / Math.sqrt(n);
+      }
+      break;
+      
+    case 10:
+      if (n >= 34 && n <= 50) {
+        kolmogorov = kolmogorov_10[n - 34];
+      } else {
+        kolmogorov = 1.22 / Math.sqrt(n);
+      }
+      break;
+      
+    default:
+      alert("El sistema solo soporta 5 o 10 grados de libertad");
+      break;
+  }
+  
+  return kolmogorov;
+}
+
 function pruebaDeLasSeries(v, pares){
   let valoresO=[]
   for(let i=0; i<v; i++){
@@ -81,10 +116,10 @@ function pruebaDeLasSeries(v, pares){
 
 
 (async function() {
-  let menu = prompt("Ingrese: 1) Chi cuadrada; 3) Prueba de las series");
+  let menu = prompt("Ingrese: 1) Chi cuadrada; 2)Prueba de Kolmogorov; 3) Prueba de las series");
 
   if (!menu) {
-    menu = prompt("Ingrese: 1) Chi cuadrada; 3) Prueba de las series");
+    menu = prompt("Ingrese: 1) Chi cuadrada; 2)Prueba de Kolmogorov; 3) Prueba de las series");
     localStorage.setItem('menu', menu);
   }
   let n=prompt("Ingrese el valor de n")
@@ -165,7 +200,64 @@ function pruebaDeLasSeries(v, pares){
     );
   }
   else if(menu==2){
+    let contenedorTablaAleatoria = document.getElementById("contenedor-tablaAleatoria");
+    contenedorTablaAleatoria.innerHTML=imprimeTablaAleatoria(valoresAleatorios)
+    let valoresOrdenados=valoresAleatorios.sort(function(a, b) {
+      return a - b;
+    });
+    let contenedorTablaKolmogorov = document.getElementById("contenedor-tablaKolmogorov");
 
+    // Crea una variable para almacenar el contenido HTML de la tabla
+    let tablaHTML = "<table><tr>Tabla prueba de Kolmogorov</tr><tr><th>i</th><th>Ui</th><th>i/n</th><th>Di</th></tr>";
+    let u=[]
+    let d=[]
+    let mayor=0
+    for(let i=0; i<n; i++){
+      u.push((i+1)/n)
+      d.push(Math.abs(valoresOrdenados[i]-u[i]))
+      if(d[i]>mayor){
+        mayor=d[i]
+      }
+      tablaHTML += "<tr><th>" + (i+1) + "</th><th>" + valoresOrdenados[i] + "</th><th>" + u[i] + "</th><th>" + d[i] + "</th></tr>"
+    }
+    tablaHTML+="</table>"
+    contenedorTablaKolmogorov.innerHTML=tablaHTML
+    let mensaje
+    let kolmogorov=gradosKolmogorov(n,v)
+    if(mayor<=kolmogorov){
+      mensaje=" <= " + kolmogorov + " ...Entonces, los números SI están uniformemente distribuidos"
+    }else{
+      mensaje=" > " + kolmogorov + " ...Entonces, los números NO están uniformemente distribuidos"
+    }
+
+    let contenedorDiMayor=document.getElementById("contenedor-DiMayor");
+    
+    let di="<h2> Di mayor = " + mayor + mensaje + " </h2>"
+    contenedorDiMayor.innerHTML=di
+    let data = []
+
+    for (let i = 0; i < n; i++) {
+      let obj = { iteracion: i+1, valoresOrdenados: valoresOrdenados[i], u: u[i] }
+      data.push(obj)
+    }
+    new Chart(
+      document.getElementById('grafica'),
+      {
+        type: 'line',
+        data: {
+          labels: data.map(row => row.iteracion),
+          datasets: [
+            {
+              label: "Valores obtenidos",
+              data: data.map(row => row.valoresOrdenados)
+            },{
+              label: "Valores esperados",
+              data: data.map(row => row.u)
+            }
+          ]
+        }
+      }
+    );
   }
   else if(menu==3){
     let tamaño=v
@@ -202,7 +294,7 @@ function pruebaDeLasSeries(v, pares){
           labels: pares.map(row => row.par2),
           datasets: [
             {
-              label: "Num de o's obtenidas",
+              label: "O's obtenidas",
               data: pares.map(row => ({
                 x: row.par1,
                 y: row.par2,
@@ -281,8 +373,5 @@ function pruebaDeLasSeries(v, pares){
     
     let sumatoria="<h2> Sumatoria = " + suma + "</h2>"
     contenedorSumatoria.innerHTML=sumatoria
-
-
-
   }
 })();
