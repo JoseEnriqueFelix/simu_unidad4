@@ -18,13 +18,39 @@ const kolmogorov_5 = [0.22743, 0.22425, 0.22119, 0.21826, 0.21544, 0.21273, 0.21
 const kolmogorov_10 = [0.21472, 0.20185, 0.19910, 0.19646, 0.19392, 0.19148, 0.18913, 0.18687, 0.18468,
    0.18257, 0.18051, 0.17856, 0.17665, 0.17481, 0.17301, 0.17128, 0.16959];
 
-function generaTablaAleatoria(n){
-    let randoms=[]
-    for (let i=0; i<n; i++){
-        randoms.push(Math.random())
-    }
-    return randoms
-}
+   let alea = [];
+   let num;
+   
+   // Verificar si el array está presente en el almacenamiento local
+   let arrayGuardado = localStorage.getItem('miArray');
+   if (arrayGuardado) {
+     alea = JSON.parse(arrayGuardado);
+     num = alea.length;
+   } else {
+     num = parseInt(prompt("Ingrese el valor de n"));
+     generaTablaAleatoria(num);
+   }
+   
+   console.log(alea);
+   
+   function generaTablaAleatoria(n) {
+     for (let i = 0; i < n; i++) {
+       alea.push(Math.random());
+     }
+   
+     // Guardar el array en el almacenamiento local
+     localStorage.setItem('miArray', JSON.stringify(alea));
+   }
+   
+   let n2 = num;
+   
+   function getN2() {
+     return n2;
+   }
+   
+   console.log(n2);
+   
+
 
 function imprimeTablaAleatoria(valoresAleatorios){
   let tablaHTML = "<table><tr>Valores Aleatorios</tr>";
@@ -146,13 +172,14 @@ function pruebaDeLasSeries(v, pares){
     menu = prompt("Ingrese:\n 1) Chi cuadrada; 2)Prueba de Kolmogorov; 3) Prueba de las series");
     localStorage.setItem('menu', menu);
   }
-  let n
   let v
+  let n
   if(menu==6){
     window.close()
   }
   else{
-    n=prompt("Ingrese el valor de n")
+    n=getN2()
+    console.log(n)
     v=prompt("ingrese el % de fallo:\n 1) 5%  2)10%")
     if(v==1){
       v=5
@@ -163,7 +190,7 @@ function pruebaDeLasSeries(v, pares){
   }
 
   if(menu==1){
-    let valoresAleatorios=generaTablaAleatoria(n)
+    let valoresAleatorios=alea
     let k=parseInt(Math.sqrt(n))
     let e=n/k
     let contenedorTablaAleatoria = document.getElementById("contenedor-tablaAleatoria");
@@ -250,9 +277,18 @@ function pruebaDeLasSeries(v, pares){
       // Código que se ejecutará cuando se haga clic en el botón
       location.reload();
     });
+
+    let boton2=document.getElementById('boton2');
+    let botonHTML2="<button>Cambiar valor de n y repetir</button>"
+    boton2.innerHTML=botonHTML2
+    boton2.addEventListener('click', function() {
+      // Código que se ejecutará cuando se haga clic en el botón
+      localStorage.removeItem('miArray');
+      location.reload();
+    });
   }
   else if(menu==2){
-    let valoresAleatorios=generaTablaAleatoria(n)
+    let valoresAleatorios=alea
     let contenedorTablaAleatoria = document.getElementById("contenedor-tablaAleatoria");
     contenedorTablaAleatoria.innerHTML=imprimeTablaAleatoria(valoresAleatorios)
     let valoresOrdenados=valoresAleatorios.sort(function(a, b) {
@@ -320,9 +356,17 @@ function pruebaDeLasSeries(v, pares){
       // Código que se ejecutará cuando se haga clic en el botón
       location.reload();
     });
+    let boton2=document.getElementById('boton2');
+    let botonHTML2="<button>Cambiar valor de n y repetir</button>"
+    boton2.innerHTML=botonHTML2
+    boton2.addEventListener('click', function() {
+      // Código que se ejecutará cuando se haga clic en el botón
+      localStorage.removeItem('miArray');
+      location.reload();
+    });
   }
   else if(menu==3){
-    let valoresAleatorios=generaTablaAleatoria(n)
+    let valoresAleatorios=alea
     let contenedorTablaAleatoria = document.getElementById("contenedor-tablaAleatoria");
     contenedorTablaAleatoria.innerHTML=imprimeTablaAleatoria(valoresAleatorios)
     let pares=[]
@@ -457,6 +501,14 @@ function pruebaDeLasSeries(v, pares){
     // Agrega un evento de clic al botón
     boton.addEventListener('click', function() {
       // Código que se ejecutará cuando se haga clic en el botón
+      location.reload();
+    });
+    let boton2=document.getElementById('boton2');
+    let botonHTML2="<button>Cambiar valor de n y repetir</button>"
+    boton2.innerHTML=botonHTML2
+    boton2.addEventListener('click', function() {
+      // Código que se ejecutará cuando se haga clic en el botón
+      localStorage.removeItem('miArray');
       location.reload();
     });
   }
