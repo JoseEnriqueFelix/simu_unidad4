@@ -1,12 +1,14 @@
 import Chart from 'chart.js/auto'
 
 let chiCuadrada_5=new Map()
+chiCuadrada_5.set("4", 9.4877)
 chiCuadrada_5.set("5", 11.0705)
 chiCuadrada_5.set("6", 12.5916)
 chiCuadrada_5.set("7", 14.0671)
 chiCuadrada_5.set("8", 15.5073)
 chiCuadrada_5.set("9", 16.9190)
 let chiCuadrada_10=new Map()
+chiCuadrada_10.set("4",  7.7794)
 chiCuadrada_10.set("5", 9.2363)
 chiCuadrada_10.set("6", 10.6446)
 chiCuadrada_10.set("7", 12.0170)
@@ -165,8 +167,35 @@ function pruebaDeLasSeries(v, pares){
   return valoresO
 }
 
+let o=[]
+for(let i=0; i<=4; i++){
+  o.push(0)
+}
+
+function huecosCalculaO(a){
+  if(a==0){
+    o[0]++
+  }
+  else if(a==1){
+    o[1]++
+  }
+  else if(a==2){
+    o[2]++
+  }
+  else if(a==3){
+    o[3]++
+  }
+  else{
+    o[4]++
+  }
+}
+
+function getO(){
+  return o
+}
+
 (async function() {
-  let menu = prompt("Ingrese:\n 1) Chi cuadrada  2)Prueba de Kolmogorov  3) Prueba de las series");
+  let menu = prompt("Ingrese:\n1) Chi cuadrada \n2)Prueba de Kolmogorov\n3) Prueba de las series\n4) Prueba de las distancias\n5) Prueba del poker\n6) Salir");
 
   if (!menu) {
     menu = prompt("Ingrese:\n 1) Chi cuadrada; 2)Prueba de Kolmogorov; 3) Prueba de las series");
@@ -513,7 +542,92 @@ function pruebaDeLasSeries(v, pares){
     });
   }
   else if(menu==4){
-
+    let valoresAleatorios=alea
+    let contenedorTablaAleatoria = document.getElementById("contenedor-tablaAleatoria");
+    contenedorTablaAleatoria.innerHTML=imprimeTablaAleatoria(valoresAleatorios)
+    let alfa=parseFloat(prompt("Ingrese alfa"))
+    let theta=parseFloat(prompt("Ingrese theta"))
+    let beta=alfa+theta
+    let limiteInferior= alfa > theta ? alfa : theta
+    let pf=1-theta
+    let tablaHTML="<table><tr>Para alfa="+alfa+", beta="+beta+" y theta="+theta+"</tr><th>n</th><th>Ui</th><th>∈</th><th>i</th>"
+    let contador=0
+    for(let i=0; i<valoresAleatorios.length; i++){
+      let pertenece=0
+      let j=""
+      if(valoresAleatorios[i]>=limiteInferior && valoresAleatorios[i]<=beta){
+        pertenece=1
+        j+=0
+        huecosCalculaO(0)
+      }
+      if(pertenece==0){
+        contador++
+        if((i+1)==valoresAleatorios.length){
+          j=contador
+          huecosCalculaO(contador)
+        }
+        else if(valoresAleatorios[i+1]>=limiteInferior && valoresAleatorios[i+1]<=beta){
+          j=contador
+          huecosCalculaO(contador)
+          contador=0
+        }
+      }
+      tablaHTML+="<tr><td>" + (i+1) + "</td><td>" + valoresAleatorios[i] + "</td><td>" + pertenece + "</td><td>" + j + "</td></tr>"
+    }
+    tablaHTML+="</table>"
+    let contenedorTablaHuecos=document.getElementById("contenedor-tablaHuecos")
+    contenedorTablaHuecos.innerHTML=tablaHTML
+    let tablaHTML2="<table><tr><th>i</th><th>Pi</th><th>Oi</th><th>Ei</th><th>Oi-Ei</th><th>((Oi-Ei)^2)/Ei</th></tr>"
+    let sumatoriaO=0
+    let ous=getO()
+    for(let i=0; i<ous.length; i++){
+      sumatoriaO+=ous[i]
+    }
+    let sumatoria=0
+    for (let i=0; i<=4; i++){
+      let im=""
+      let p=((Math.pow((1-theta), i))*theta)
+      if(i==4){
+        im+=">="
+        p/=theta
+      }
+      im+=i
+      let oi=ous[i]
+      let ei=sumatoriaO*p
+      let final=(Math.pow(oi-ei,2))/ei
+      sumatoria+=final
+      tablaHTML2+="<tr><td>"+im+"</td><td>"+p+"</td><td>"+oi+"</td><td>"+ei+"<td>"+(oi-ei)+"</td><td>"+final+"</td></td></tr>"
+    }
+    console.log(sumatoria)
+    tablaHTML2+="</table>"
+    let contenedorTablaHuecos2=document.getElementById("contenedor-tablaHuecos2")
+    contenedorTablaHuecos2.innerHTML=tablaHTML2
+    let comparacion=evaluacionChiCuadrada(5, v)
+    if(sumatoria<=comparacion){
+      mensaje="<h2> Sumatoria = " + sumatoria + " <= " + comparacion + " ... por lo tanto, los números SI son independientes</h2>"
+    }
+    else {
+      mensaje="<h2> Sumatoria = " + sumatoria + " > " + comparacion + " ... por lo tanto, los números NO son independientes</h2>"
+    }
+    let contenedorSumatoria=document.getElementById("contenedor-sumatoria");
+    contenedorSumatoria.innerHTML=mensaje
+    let boton = document.getElementById('boton');
+    let botonHTML="<button>Repetir</button>"
+    boton.innerHTML=botonHTML
+    // Agrega un evento de clic al botón
+    boton.addEventListener('click', function() {
+      // Código que se ejecutará cuando se haga clic en el botón
+      location.reload();
+    });
+    let boton2=document.getElementById('boton2');
+    let botonHTML2="<button>Cambiar valor de n y repetir</button>"
+    boton2.innerHTML=botonHTML2
+    boton2.addEventListener('click', function() {
+      // Código que se ejecutará cuando se haga clic en el botón
+      localStorage.removeItem('miArray');
+      location.reload();
+    });
+    
   }
   else if(menu==5){
 
