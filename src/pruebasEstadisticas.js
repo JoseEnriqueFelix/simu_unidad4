@@ -189,6 +189,85 @@ function huecosCalculaO(a){
     o[4]++
   }
 }
+function poker(k) {
+  let nums=50;
+  let arr=[]
+  const nnums = new Array(alea);
+  for (let i = 0; i < nums; i++) {
+    nnums[i] = String(alea[i] * 10000000);
+  }
+
+  const fO = new Array(7).fill(0);
+
+  console.log("i\tri\t\tEvento");
+  for (let i = 0; i < nums; i++) {
+    const repeticiones = new Array(10).fill(0);
+    for (let j = 0; j < 5; j++) {
+      repeticiones[parseInt(nnums[i].substring(j, j + 1))]++;
+    }
+    let pares = 0, tercias = 0, pok = 0, quintilla = 0;
+    for (let j = 0; j < 10; j++) {
+      if (repeticiones[j] === 2)
+        pares++;
+      if (repeticiones[j] === 3)
+        tercias++;
+      if (repeticiones[j] === 4)
+        pok++;
+      if (repeticiones[j] === 5)
+        quintilla++;
+    }
+    console.log((i + 1) + "\t" + (alea[i]) + "\t\t");
+    if (pares === 1 && tercias === 0) {
+      console.log("1 Par");
+      arr.push("Par")
+      fO[1]++;
+    } else if (pares === 2) {
+      console.log("2 Pares");
+      arr.push("2 Pares")
+      fO[3]++;
+    } else if (pares === 0 && tercias === 1) {
+      console.log("Tercia");
+      arr.push("Tercia")
+      fO[2]++;
+    } else if (pares === 1 && tercias === 1) {
+      console.log("Full");
+      arr.push("Full")
+      fO[4]++;
+    } else if (pok === 1) {
+      console.log("Poker");
+      arr.push("Poker")
+      fO[5]++;
+    } else if (quintilla === 1) {
+      console.log("Quintilla");
+      arr.push("Quintilla")
+      fO[6]++;
+    } else {
+      console.log("Pachuca");
+      arr.push("Pachuca")
+      fO[0]++;
+    }
+  }
+
+  const nombres = ["Pachuca", "1 Par", "Tercia", "2 Pares", "Full", "Poker", "Quintilla"];
+  const valorEsp = [0.3024, 0.504, 0.072, 0.108, 0.009, 0.0045, 0.0001];
+  console.log("\nEvento\t\tFO\tPE\tFE\t(FO-FE)\t(FO-FE)^2/FE");
+  let res = 0;
+  for (let i = 0; i < 7; i++) {
+    console.log(`${i < 6 ? nombres[i] + "\t\t" : nombres[i] + "\t"}`);
+    console.log(`${fO[i]}\t${(valorEsp[i])}\t${(valorEsp[i] * nums)}\t${(fO[i] - (valorEsp[i] * nums))}\t${((Math.pow(fO[i] - (valorEsp[i] * nums), 2) / (valorEsp[i] * nums)))}`);
+    res += (Math.pow(fO[i] - (valorEsp[i] * nums), 2) / (valorEsp[i] * nums));
+  }
+   // VALIDACION SI SON INDEPENDIENTES O NO
+  console.log(`\nSuma: ${res}`);
+  console.log("\n------------------------------------------------------------------------");
+  if (res) {
+    console.log(`${res} <= ${chiCuadrada_5.get("6",getN2)} por lo tanto SON INDEPENDIENTES`);
+  } else {
+    console.log(`${res} > ${chiCuadrada_5.get("6",getN2)} por lo tanto NO son independientes`);
+  }
+  console.log("------------------------------------------------------------------------");
+  return arr
+}
 
 function getO(){
   return o
@@ -630,6 +709,102 @@ function getO(){
     
   }
   else if(menu==5){
+    let valoresAleatorios=alea
+    let contenedorTablaAleatoria = document.getElementById("contenedor-tablaAleatoria");
+    contenedorTablaAleatoria.innerHTML=imprimeTablaAleatoria(valoresAleatorios)
+    let valores=poker(getN2);
+    
+    let tablaHTML="<table><tr>Poker<th>n</th><th>ri</th><th>Evento</th></tr>"
+    for(let i=0; i<valoresAleatorios.length; i++){
+      let imprimir=valoresAleatorios[i].toString()
+      let arr=imprimir.slice(0, 7)
+      imprimir=arr
+      tablaHTML+="<tr><td>"+(i+1)+"</td><td>" + imprimir + "</td><td>" + valores[i] + "</td></tr>"
+    }
+    tablaHTML+="</table>"
+    let contenedorTablaPoker=document.getElementById("contenedor-tablaPoker")
+    contenedorTablaPoker.innerHTML=tablaHTML
 
+    let tablaHTML2="<table><tr><th>Evento</th><th>FO</th><th>PE</th><th>FE</th><th>((FOi-FEi)^2)/FEi</th></tr>"
+
+    let contador=[]
+    for(let i=0; i<7; i++){
+      contador[i]=0
+    }
+
+    for(let i=0; i<valores.length; i++){
+      if(valores[i]=="Pachuca"){
+        contador[0]++
+      }else if(valores[i]=="Par"){
+        contador[1]++
+      }else if(valores[i]=="Tercia"){
+        contador[2]++
+      }else if(valores[i]=="2 Pares"){
+        contador[3]++
+      }else if(valores[i]=="Full"){
+        contador[4]++
+      }else if(valores[i]=="Poker"){
+        contador[5]++
+      }else{
+        contador[6]++
+      }
+    }
+
+    let pe=[0.3024, 0.5040, 0.0720, 0.1080, 0.0090, 0.0045, 0.0001]
+
+    let sumatoria = 0
+
+    for(let i=0; i<7; i++){
+      let evento
+      if(i==0){
+        evento="Pachuca"
+      }else if(i==1){
+        evento="Par"
+      }else if(i==2){
+        evento="Tercia"
+      }else if(i==3){
+        evento="Dos Pares"
+      }else if(i==4){
+        evento="Full"
+      }else if(i==5){
+        evento="Poker"
+      }else{
+        evento="Quintilla"
+      }
+      let fe=valoresAleatorios.length*pe[i]
+      let total=(Math.pow(contador[i]-fe, 2)/fe)
+      sumatoria+=total
+      tablaHTML2+="<tr><td>" + evento + "</td><td>" + contador[i] + "</td><td>" + pe[i] + "</td><td>" + fe + "</td><td>" + total + "</td></tr>"
+    }
+    tablaHTML2+="</table>"
+    let contenedorTablaPoker2=document.getElementById("contenedor-tablaPoker2")
+    contenedorTablaPoker2.innerHTML=tablaHTML2
+    let comparacion=evaluacionChiCuadrada(7, v)
+    if(sumatoria<=comparacion){
+      mensaje="<h2> Sumatoria = " + sumatoria + " <= " + comparacion + " ... por lo tanto, los números SI son independientes</h2>"
+    }
+    else {
+      mensaje="<h2> Sumatoria = " + sumatoria + " > " + comparacion + " ... por lo tanto, los números NO son independientes</h2>"
+    }
+    let contenedorSumatoria=document.getElementById("contenedor-sumatoria");
+    contenedorSumatoria.innerHTML=mensaje
+
+
+    let boton = document.getElementById('boton');
+    let botonHTML="<button>Repetir</button>"
+    boton.innerHTML=botonHTML
+    // Agrega un evento de clic al botón
+    boton.addEventListener('click', function() {
+      // Código que se ejecutará cuando se haga clic en el botón
+      location.reload();
+    });
+    let boton2=document.getElementById('boton2');
+    let botonHTML2="<button>Cambiar valor de n y repetir</button>"
+    boton2.innerHTML=botonHTML2
+    boton2.addEventListener('click', function() {
+      // Código que se ejecutará cuando se haga clic en el botón
+      localStorage.removeItem('miArray');
+      location.reload();
+    });
   }
 })();
